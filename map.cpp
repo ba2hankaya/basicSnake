@@ -39,7 +39,7 @@ void Map::generateApple(int &x, int &y,const Snake &s)
 	}
 }
 
-bool Map::cellHasApple(const int x, const int y)
+bool Map::cellHasApple(const int x, const int y) const
 {
 	return mp[y][x] == 1;
 }
@@ -49,7 +49,7 @@ void Map::eatApple(const int x, const int y)
 	mp[y][x] = 0;
 }
 
-void Map::printMap()
+void Map::printMap() const
 {
 	for(int y = 0; y < 10; y++){
 		for(int x = 0; x < 10; x++){

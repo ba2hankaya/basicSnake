@@ -11,8 +11,8 @@ class Map
 	public:
 		Map();
 		void generateApple(int& x, int& y, const Snake& s);
-		void printMap();
-		bool cellHasApple(const int x ,const int y);
+		void printMap() const;
+		bool cellHasApple(const int x ,const int y) const;
 		void eatApple(const int x, const int y);
 };
 
