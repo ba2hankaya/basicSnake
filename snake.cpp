@@ -41,16 +41,30 @@ int Snake::move()
 	for(int i = bodySize; i > 0; i--){
 		body[i] = body[i-1];
 	}
-	if(body[0].x < 0 || body[0].x > 10 || body[0].y < 0 || body[0].y > 10){
-		return -1;
-	}
+	int nextPosX = body[0].x;
+	int nextPosY = body[0].y;
 	if(axis == 0){
-		body[0].x += direction;
+		nextPosX = body[0].x + direction;
 	}else{
-		body[0].y += direction;
+		nextPosY = body[0].y + direction;
 	}
+	if(nextPosX < 0 || nextPosX > 10 || nextPosY < 0 || nextPosY > 10){
+		return -1;
+	}else{
+		for(int i = 1; i < body.size(); i++){
+			if(body[i].x == nextPosX && body[i].y == nextPosY){
+				return -1;
+			}
+		}
+	}
+
+	body[0].x = nextPosX;
+	body[0].y = nextPosY;
+
+
 	if(map.cellHasApple(body[0].x,body[0].y)){
 		addNode();
+		score++;
 		int appleX, appleY;
 		map.eatApple(body[0].x, body[0].y);
 		map.generateApple(appleX, appleY);
@@ -64,9 +78,8 @@ void Snake::printSnake()
 		mvprintw(body[i].y, body[i].x, "$");
 	}
 	mvprintw(body[0].y, body[0].x, "@");
-	mvprintw(41, 50, std::to_string(body[0].x).c_str());
-	mvprintw(41, 52, std::to_string(body[0].y).c_str());
+	//mvprintw(41, 50, std::to_string(body[0].x).c_str());
+	//mvprintw(41, 52, std::to_string(body[0].y).c_str());
 }
 
-
-
+int Snake::getScore() {return score;}

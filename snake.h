@@ -20,6 +20,7 @@ class Snake
 		int direction = 1;
 		vector<SnakeNode> body;
 		Map &map;
+		int score = 0;
 	public:
 		Snake(Map &map);
 
@@ -30,6 +31,9 @@ class Snake
 		void printSnake();
 
 		int addNode();
+
+		int getScore();
+
 };
 
 #endif
