@@ -46,8 +46,8 @@ void Map::printMap()
 			if(mp[y][x] == 1)
 			{
 				mvprintw(y, x, "Q");
-				mvprintw(40, 50, std::to_string(x).c_str());
-				mvprintw(40, 52, std::to_string(y).c_str());
+				//mvprintw(40, 50, std::to_string(x).c_str());
+				//mvprintw(40, 52, std::to_string(y).c_str());
 			}
 		}
 	}
