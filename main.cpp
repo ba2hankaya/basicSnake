@@ -102,7 +102,7 @@ int main(int argc, char ** argv)
 		}
 		usleep(100000);
 	}
-
+	delwin(gamewin);
 	endwin();
 
 	return 0;
