@@ -3,7 +3,7 @@
 #include <ncurses.h>
 #include <string>
 #include "snake.h"
-Map::Map()
+Map::Map(WINDOW* mywin): mywin(mywin)
 {
 	for(int i = 0; i < 10; i++){
 		for(int j = 0; j < 10; j++){
@@ -55,7 +55,7 @@ void Map::printMap() const
 		for(int x = 0; x < 10; x++){
 			if(mp[y][x] == 1)
 			{
-				mvprintw(y, x, "Q");
+				mvwprintw(mywin, y, x, "Q");
 				//mvprintw(40, 50, std::to_string(x).c_str());
 				//mvprintw(40, 52, std::to_string(y).c_str());
 			}
