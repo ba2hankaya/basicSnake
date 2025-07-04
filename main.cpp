@@ -19,7 +19,7 @@ int main(int argc, char ** argv)
 
 	int ch;
 	int firstAppleX, firstAppleY;
-	map.generateApple(firstAppleX, firstAppleY);
+	map.generateApple(firstAppleX, firstAppleY, s1);
 	bool axis = 0;
 	int direction = 1;
 	while(true){
