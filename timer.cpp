@@ -5,10 +5,9 @@ Timer::Timer()
 	start = std::chrono::high_resolution_clock::now();
 }
 
-int Timer::getTime(){
-
-	int elapsed = (long int)std::chrono::duration_cast<std::chrono::seconds>(cur - start).count();
-	return elapsed;
+double Timer::getTime(){
+    std::chrono::duration<double> elapsed = cur - start;
+    return elapsed.count();
 }
 
 void Timer::update()
