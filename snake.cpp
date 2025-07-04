@@ -8,7 +8,7 @@ Snake::Snake(Map &map): map(map)
 	body.push_back(head);
 }
 
-bool Snake::isValidDir(bool inputAxis, int inputDirection)
+bool Snake::isValidDir(bool inputAxis, int inputDirection) const
 {
 	return inputAxis != axis;
 }
@@ -67,12 +67,12 @@ int Snake::move()
 		score++;
 		int appleX, appleY;
 		map.eatApple(body[0].x, body[0].y);
-		map.generateApple(appleX, appleY);
+		map.generateApple(appleX, appleY, *this);
 	}
 	return 1;
 }
 
-void Snake::printSnake()
+void Snake::printSnake() const
 {
 	for(int i = 1; i < body.size(); i++){
 		mvprintw(body[i].y, body[i].x, "$");
@@ -82,4 +82,15 @@ void Snake::printSnake()
 	//mvprintw(41, 52, std::to_string(body[0].y).c_str());
 }
 
-int Snake::getScore() {return score;}
+int Snake::getScore() const{return score;}
+
+int Snake::getSize() const{ return body.size();}
+
+bool Snake::isOnCell(const int x, const int y) const{
+	for(int i = 0; i < body.size(); i++){
+		if(body[i].x == x && body[i].y == y){
+			return true;
+		}
+	}
+	return false;
+}

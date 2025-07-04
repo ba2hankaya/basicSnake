@@ -24,18 +24,21 @@ class Snake
 	public:
 		Snake(Map &map);
 
-		bool isValidDir(bool inputAxis, int inputDirection);
+		bool isValidDir(bool inputAxis, int inputDirection) const;
 
 		int changeDir(bool inputAxis, int inputDirection);
 
 		int move();
 
-		void printSnake();
+		void printSnake() const;
 
 		int addNode();
 
-		int getScore();
+		int getScore() const;
 
+		int getSize() const;
+
+		bool isOnCell(const int x, const int y) const;
 };
 
 #endif
