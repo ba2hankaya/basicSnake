@@ -21,8 +21,9 @@ class Snake
 		vector<SnakeNode> body;
 		Map &map;
 		int score = 0;
+		WINDOW* mywin;
 	public:
-		Snake(Map &map);
+		Snake(Map &map, WINDOW* mywin);
 
 		bool isValidDir(bool inputAxis, int inputDirection) const;
 

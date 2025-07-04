@@ -2,9 +2,9 @@ using namespace std;
 #include "snake.h"
 #include <string>
 
-Snake::Snake(Map &map): map(map)
+Snake::Snake(Map &map, WINDOW* mywin): map(map), mywin(mywin)
 {
-	SnakeNode head(0, 0);
+	SnakeNode head(1, 1);
 	body.push_back(head);
 }
 
@@ -32,12 +32,6 @@ int Snake::addNode()
 
 int Snake::move()
 {
-	int bodySize = body.size() - 1;
-	for(int i = bodySize; i > 0; i--){
-		if(!(body[i].x == body[i-1].x && body[i].y == body[i-1].y)){
-			body[i] = body[i-1];
-		}
-	}
 	int nextPosX = body[0].x;
 	int nextPosY = body[0].y;
 	if(axis == 0){
@@ -45,13 +39,19 @@ int Snake::move()
 	}else{
 		nextPosY = body[0].y + direction;
 	}
-	if(nextPosX < 0 || nextPosX > 10 || nextPosY < 0 || nextPosY > 10){
+	if(nextPosX < 1 || nextPosX > 11 || nextPosY < 1 || nextPosY > 11){
 		return -1;
 	}else{
 		for(int i = 1; i < body.size(); i++){
 			if(body[i].x == nextPosX && body[i].y == nextPosY){
 				return -1;
 			}
+		}
+	}
+	int bodySize = body.size() - 1;
+	for(int i = bodySize; i > 0; i--){
+		if(!(body[i].x == body[i-1].x && body[i].y == body[i-1].y)){
+			body[i] = body[i-1];
 		}
 	}
 
@@ -72,9 +72,9 @@ int Snake::move()
 void Snake::printSnake() const
 {
 	for(int i = 1; i < body.size(); i++){
-		mvprintw(body[i].y, body[i].x, "$");
+		mvwprintw(mywin, body[i].y, body[i].x, "$");
 	}
-	mvprintw(body[0].y, body[0].x, "@");
+	mvwprintw(mywin, body[0].y, body[0].x, "@");
 	//mvprintw(41, 50, std::to_string(body[0].x).c_str());
 	//mvprintw(41, 52, std::to_string(body[0].y).c_str());
 }
