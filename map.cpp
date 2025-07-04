@@ -2,6 +2,7 @@
 #include <random>
 #include <ncurses.h>
 #include <string>
+#include "snake.h"
 Map::Map()
 {
 	for(int i = 0; i < 10; i++){
@@ -11,22 +12,31 @@ Map::Map()
 	}
 }
 
-void getRandomLoc(int &x, int &y)
+int getRandomNum(const int min,const int maxExcluded)
 {
 	std::random_device rd;
 	std::mt19937 mt(rd());
-	std::uniform_real_distribution<double> dist(1.0,10.0);
-	x = dist(mt);
-	y = dist(mt);
+	std::uniform_real_distribution<double> dist(min,maxExcluded);
+	return dist(mt);
 }
 
-void Map::generateApple(int &x, int &y)
+void Map::generateApple(int &x, int &y,const Snake &s)
 {
-	int myX, myY;
-	getRandomLoc(myX, myY);
-	mp[myY][myX] = 1;
-	x = myX;
-	y = myY;
+	int max = s.getSize();
+	int rawLoc = getRandomNum(0, 100-max);
+	for(int i = 0; i < 10; i++){
+		for(int j = 0; j < 10; j++){
+			if(!s.isOnCell(j, i)){
+				if(rawLoc == 0){
+					mp[i][j] = 1;
+					x = j;
+					y = i;
+					return;
+				}
+				rawLoc--;
+			}
+		}
+	}
 }
 
 bool Map::cellHasApple(const int x, const int y)
