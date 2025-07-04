@@ -59,6 +59,7 @@ int main(int argc, char ** argv)
 			clear();
 			mvwvline(stdscr, 0, 11, ACS_VLINE, 11);
 			mvwhline(stdscr, 11, 0, ACS_HLINE, 11);
+			mvaddch(11 , 11, ACS_LRCORNER);
 			time = timer.getTime();
 			const string timeStr = "Time: " + std::to_string((int)time);
 			mvprintw(0,13, timeStr.c_str());
