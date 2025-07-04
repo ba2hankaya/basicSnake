@@ -8,18 +8,18 @@ Snake::Snake(Map &map): map(map)
 	body.push_back(head);
 }
 
+bool Snake::isValidDir(bool inputAxis, int inputDirection)
+{
+	return inputAxis != axis;
+}
+
 int Snake::changeDir(bool inputAxis, int inputDirection)
 {
-	if(inputAxis == axis)
-	{
-		return -1;
-	}
-	else
-	{
-		axis = inputAxis;
-		direction = inputDirection;
-		return 1;
-	}
+	if(!isValidDir(inputAxis, inputDirection)) return -1;
+
+	axis = inputAxis;
+	direction = inputDirection;
+	return 1;
 }
 
 int Snake::addNode()

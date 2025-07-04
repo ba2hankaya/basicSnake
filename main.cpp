@@ -29,20 +29,28 @@ int main(int argc, char ** argv)
 			switch(ch)
 			{
 				case KEY_UP:
-					axis = 1;
-					direction = -1;
+					if(s1.isValidDir(1, -1)){
+						axis = 1;
+						direction = -1;
+					}
 					break;
 				case KEY_DOWN:
-					axis = 1;
-					direction = 1;
+					if(s1.isValidDir(1,1)){
+						axis = 1;
+						direction = 1;
+					}
 					break;
 				case KEY_LEFT:
-					axis = 0;
-					direction = -1;
+					if(s1.isValidDir(0, -1)){
+						axis = 0;
+						direction = -1;
+					}
 					break;
 				case KEY_RIGHT:
-					axis = 0;
-					direction = 1;
+					if(s1.isValidDir(0, 1)){
+						axis = 0;
+						direction = 1;
+					}
 					break;
 			}
 		}

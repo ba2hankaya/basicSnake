@@ -24,6 +24,8 @@ class Snake
 	public:
 		Snake(Map &map);
 
+		bool isValidDir(bool inputAxis, int inputDirection);
+
 		int changeDir(bool inputAxis, int inputDirection);
 
 		int move();
