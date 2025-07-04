@@ -55,7 +55,7 @@ void Map::printMap() const
 		for(int x = 0; x < 10; x++){
 			if(mp[y][x] == 1)
 			{
-				mvwprintw(mywin, y, x, "Q");
+				mvwprintw(mywin, y+1, x+1, "Q");
 				//mvprintw(40, 50, std::to_string(x).c_str());
 				//mvprintw(40, 52, std::to_string(y).c_str());
 			}

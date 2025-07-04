@@ -4,7 +4,7 @@ using namespace std;
 
 Snake::Snake(Map &map, WINDOW* mywin): map(map), mywin(mywin)
 {
-	SnakeNode head(1, 1);
+	SnakeNode head(0, 0);
 	body.push_back(head);
 }
 
@@ -39,7 +39,7 @@ int Snake::move()
 	}else{
 		nextPosY = body[0].y + direction;
 	}
-	if(nextPosX < 1 || nextPosX > 11 || nextPosY < 1 || nextPosY > 11){
+	if(nextPosX < 0 || nextPosX > 10 || nextPosY < 0 || nextPosY > 10){
 		return -1;
 	}else{
 		for(int i = 1; i < body.size(); i++){
@@ -72,9 +72,9 @@ int Snake::move()
 void Snake::printSnake() const
 {
 	for(int i = 1; i < body.size(); i++){
-		mvwprintw(mywin, body[i].y, body[i].x, "$");
+		mvwprintw(mywin, body[i].y+1, body[i].x+1, "$");
 	}
-	mvwprintw(mywin, body[0].y, body[0].x, "@");
+	mvwprintw(mywin, body[0].y+1, body[0].x+1, "@");
 	//mvprintw(41, 50, std::to_string(body[0].x).c_str());
 	//mvprintw(41, 52, std::to_string(body[0].y).c_str());
 }
