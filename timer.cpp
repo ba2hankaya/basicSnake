@@ -5,7 +5,7 @@ Timer::Timer()
 	start = std::chrono::high_resolution_clock::now();
 }
 
-double Timer::getTime(){
+double Timer::getTime() const{
     std::chrono::duration<double> elapsed = cur - start;
     return elapsed.count();
 }

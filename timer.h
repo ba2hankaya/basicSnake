@@ -10,7 +10,7 @@ class Timer
 		std::chrono::time_point<std::chrono::high_resolution_clock> cur;
 	public:
 		Timer();
-		double getTime();
+		double getTime() const;
 		void update();
 };
 
