@@ -33,13 +33,10 @@ int Snake::addNode()
 int Snake::move()
 {
 	int bodySize = body.size() - 1;
-	if(nodeAdded)
-	{
-		bodySize--;
-		nodeAdded = false;
-	}
 	for(int i = bodySize; i > 0; i--){
-		body[i] = body[i-1];
+		if(!(body[i].x == body[i-1].x && body[i].y == body[i-1].y)){
+			body[i] = body[i-1];
+		}
 	}
 	int nextPosX = body[0].x;
 	int nextPosY = body[0].y;
